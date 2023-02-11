@@ -1,0 +1,11 @@
+ : format on save for all filetypes
+ - to share between VSCode and Neovim
+ : `.prettier` for json, js like languages
+ : `.editorconfig` for generic editing
+ x watch test, rerun tests for file that have changed
+ : publish a library package with this setup
+ : continue with Guttag's textbook
+ ? what is the difference between `make build-check` and `make build`
+ ? is it possible to replace `setup.cfg` with `pyproject.toml`
+ | https://stackoverflow.com/questions/62983756/what-is-pyproject-toml-file-for
+ ? can `tox.ini` and `pytest.ini` configs be set inside `setup.cfg`?
