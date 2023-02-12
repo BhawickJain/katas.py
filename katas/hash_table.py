@@ -99,9 +99,9 @@ class hash_table(Generic[T]):
 
         return key_list
 
-    def values(self) -> List[str]:
+    def values(self) -> List[T]:
         """Returns a list of values present in the hash table, includes duplicate instances"""
-        value_list: List[str] = []
+        value_list: List[T] = []
         for hash_bucket in self.keymap:
             if hash_bucket is None:
                 continue

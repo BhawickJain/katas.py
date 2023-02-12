@@ -1,12 +1,12 @@
-from typing import Union, Generic, TypeVar
+from typing import Union, Generic, TypeVar, Optional
 """Binary Search Tree"""
 
 T = TypeVar("T")
 
 class Bst(Generic[T]):
-    def __init__(self, root_value: int):
-        self.root_node = Node(root_value)
-    def insert(self, value):
+    def __init__(self, root_value: int) -> None:
+        self.root_node: Node[T] = Node[T](root_value)
+    def insert(self, value) -> None:
         current_node = self.root_node
         while True:
             if value <= current_node.value:
@@ -23,8 +23,7 @@ class Bst(Generic[T]):
                 else:
                     current_node.high= Node(value)
                     break
-            return True
-    def find(self, value):
+    def find(self, value) -> bool:
         current_node = self.root_node
         while current_node is not None:
             if current_node.value == value:
@@ -37,7 +36,7 @@ class Bst(Generic[T]):
                 continue
         return False
 
-    def auto_balance(self):
+    def auto_balance(self) -> None:
         # bredth first tree travesal into a list of values (time: O(n))
         # sort using a O(nLog(n)) algorithm like merge sort
         # compute midian index of sorted list
@@ -49,10 +48,10 @@ class Bst(Generic[T]):
 
 
 class Node(Generic[T]):
-    def __init__(self, value):
+    def __init__(self, value) -> None:
         self.value: T = value
-        self.low: Union[Node, None] = None
-        self.high: Union[Node, None] = None
+        self.low: Optional[Node] = None
+        self.high: Optional[Node] = None
 
     def __repr__(self) -> str:
         return repr({"value": self.value, "low": self.low, "high": self.high})

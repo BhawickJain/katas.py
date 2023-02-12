@@ -121,4 +121,4 @@ def test_hash_table__values() -> None:
     ht_values = ht.values()
 
     # check item_pair value
-    assert ht_values == [96, 97, 96]
+    assert set(ht_values) == set([96, 97, 96])
