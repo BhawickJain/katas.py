@@ -21,6 +21,7 @@ def test_queue__dequeue() -> None:
     assert item == 5
     assert queue_list._items == [1]
 
+
 def test_queue__dequeue_object() -> None:
     queue_list = Queue[object]()
     queue_list.enqueue({"rating": 50})

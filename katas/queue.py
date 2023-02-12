@@ -2,6 +2,7 @@ from typing import TypeVar, Generic, List, Union
 
 T = TypeVar("T")
 
+
 class Queue(Generic[T]):
     def __init__(self) -> None:
         self._items: List[T] = []
