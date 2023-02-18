@@ -1,5 +1,8 @@
 # README
 
+![ci](https://github.com/BhawickJain/katas.py/actions/workflows/ci.yaml/badge.svg)
+![cd](https://github.com/BhawickJain/katas.py/actions/workflows/cd.yaml/badge.svg)
+
 This is a homework assignment completed for a Man Group junior software engineer role.
 
 ## Coding Task
