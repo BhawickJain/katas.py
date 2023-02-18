@@ -1,8 +1,8 @@
 # README
 
-![example workflow](https://github.com/BhawickJain/katas.py/actions/workflows/ci.yaml/badge.svg)
-![example workflow](https://github.com/BhawickJain/katas.py/actions/workflows/cd.yaml/badge.svg)
+[![CI](https://github.com/BhawickJain/katas.py/actions/workflows/ci.yml/badge.svg)](https://github.com/BhawickJain/katas.py/actions/workflows/ci.yml)
 
+cd
 This is a homework assignment completed for a Man Group junior software engineer role.
 
 ## Coding Task
