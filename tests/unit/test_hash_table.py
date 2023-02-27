@@ -110,6 +110,7 @@ def test_hash_table__keys() -> None:
     # check item_pair value
     assert set(ht_keys) == set(["a", "b", "c"])
 
+
 def test_hash_table__values() -> None:
     # setup input items
     ht = hash_table[int]()
