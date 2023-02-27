@@ -15,6 +15,8 @@ services:
         - db
     db:
       image: postgres:14.1-alpine
+      build:
+        context: ..
       restart: always
       environment:
         - POSTGRES_USER=postgres
@@ -23,9 +25,10 @@ services:
       ports:
         - "5432:5432"
       volumes:
+        # Named volume persistence for database
         - db:/var/lib/postgresql/data
         # Initial Query to build database tables and mock data
-        - ../db/mock-create_tables.sql:/docker-entrypoint-initdb.d/create-tables-mock-data.sql
+        - ../db/create-tables-mock-data.sql:/docker-entrypoint-initdb.d/create-tables-mock-data.sql
 networks:
   overlay:
 volumes:
