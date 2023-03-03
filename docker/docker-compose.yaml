@@ -14,6 +14,7 @@ services:
       depends_on:
         - db
     db:
+      container_name: db
       image: postgres:14.1-alpine
       build:
         context: ..
