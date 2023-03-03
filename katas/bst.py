@@ -1,18 +1,21 @@
 from typing import Union, Generic, TypeVar, Optional
+
 """Binary Search Tree"""
 
 T = TypeVar("T")
 
+
 class Bst(Generic[T]):
     def __init__(self, root_value: int) -> None:
         self.root_node: Node[T] = Node[T](root_value)
+
     def insert(self, value) -> None:
         current_node = self.root_node
         while True:
             if value <= current_node.value:
                 if current_node.low != None:
-                   current_node = current_node.low
-                   continue
+                    current_node = current_node.low
+                    continue
                 else:
                     current_node.low = Node(value)
                     break
@@ -21,8 +24,9 @@ class Bst(Generic[T]):
                     current_node = current_node.high
                     continue
                 else:
-                    current_node.high= Node(value)
+                    current_node.high = Node(value)
                     break
+
     def find(self, value) -> bool:
         current_node = self.root_node
         while current_node is not None:
@@ -55,4 +59,3 @@ class Node(Generic[T]):
 
     def __repr__(self) -> str:
         return repr({"value": self.value, "low": self.low, "high": self.high})
-    

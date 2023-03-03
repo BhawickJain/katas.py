@@ -3,6 +3,7 @@ from functools import reduce
 
 T = TypeVar("T")
 
+
 class hash_table(Generic[T]):
     @staticmethod
     def hasher_homemade_2(key: str, array_len: int) -> int:
@@ -77,14 +78,14 @@ class hash_table(Generic[T]):
         # find the tuple with the target key
         item_pair = hash_table._find_item(key_array, key)
         return item_pair
-    
+
     def keys(self) -> List[str]:
         """Returns a list of keys present in the hash table"""
         key_list: List[str] = []
         for hash_bucket in self.keymap:
             if hash_bucket is None:
                 continue
-            
+
             # approach 1
             # causes entire array to be instantiated in each iteration
             # # cannot use append because <Array>.append -> None
@@ -105,7 +106,7 @@ class hash_table(Generic[T]):
         for hash_bucket in self.keymap:
             if hash_bucket is None:
                 continue
-            
+
             for item in hash_bucket:
                 value_list.append(item[1])
 
