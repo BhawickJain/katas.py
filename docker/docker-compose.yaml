@@ -4,7 +4,7 @@ services:
       build:
         context: ..
         dockerfile: docker/Dockerfile.dev
-      entrypoint: sh -c "echo 'your custom command here' && tail -f /dev/null"
+      entrypoint: sh -c "bash scripts/katas-py-entrypoint.sh && tail -f /dev/null"
       ports:
         - "5000:5000"
       volumes:
