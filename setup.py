@@ -18,6 +18,7 @@ dev = [
     "black",
     "flake8",
     "mypy",
+    "jupyterlab",
 ]
 
 setup(

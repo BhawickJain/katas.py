@@ -1,5 +1,7 @@
 FROM python:3
 
+ARG JUPYTERLAB_PORT=8888
+
 WORKDIR /opt/workspace
 COPY . .
 RUN python -m pip install --upgrade pip
@@ -7,7 +9,10 @@ RUN python -m pip install --upgrade pip
 # setup venv path
 ENV VENVPATH=/root/.local/.venv
 
+# setup jupterlab port
+ENV JUPYTERLAB_PORT=$JUPYTERLAB_PORT
+
 # add convenient venv activate alias
 RUN echo 'alias activate="source ${VENVPATH}/bin/activate"' >> ~/.bashrc
 
-EXPOSE 5000
+EXPOSE $JUPYTERLAB_PORT
