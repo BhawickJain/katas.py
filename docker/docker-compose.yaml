@@ -3,6 +3,8 @@ services:
       container_name: katas-py
       build:
         context: ..
+        args:
+          JUPYTERLAB_PORT: 8888
         dockerfile: docker/Dockerfile.dev
       entrypoint: sh -c "bash scripts/katas-py-entrypoint.sh && tail -f /dev/null"
       ports:

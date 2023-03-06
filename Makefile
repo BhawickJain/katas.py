@@ -23,6 +23,9 @@ dev: check-os venv
 	@echo -e $$'deactvate'
 	@echo -e $$''
 
+lab: check-os
+	jupyter-lab --ip='*' --port=$(JUPYTERLAB_PORT) --no-browser --allow-root
+
 build-check: check-os
 	python setup.py sdist
 
@@ -53,7 +56,6 @@ check-os:
 	@(\
 		if [[ $(shell uname) == "Darwin" ]]; then \
 			echo -e $$'\e[1;103m\e[1;90m WARNING \e[0m\e[1;97m Script only tested on Debian OS (macOS detected) \e[0m' ;\
-			$(error Make Command restricted linux containers)
 		fi \
 	)
 
