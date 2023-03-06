@@ -5,31 +5,32 @@ from typing import Union, Generic, TypeVar, Optional
 T = TypeVar("T")
 
 
-class Bst(Generic[T]):
+class Bst:
     def __init__(self, root_value: int) -> None:
-        self.root_node: Node[T] = Node[T](root_value)
+        self.root_node: Node[int] = Node[int](root_value)
 
     def insert(self, value) -> None:
         current_node = self.root_node
         while True:
             if value <= current_node.value:
-                if current_node.low != None:
+                # use isinstance to type narrow / type guard
+                if isinstance(current_node.low, Node):
                     current_node = current_node.low
                     continue
                 else:
                     current_node.low = Node(value)
                     break
             if value > current_node.value:
-                if current_node.high != None:
+                if isinstance(current_node.high, Node):
                     current_node = current_node.high
                     continue
                 else:
                     current_node.high = Node(value)
                     break
 
-    def find(self, value) -> bool:
-        current_node = self.root_node
-        while current_node is not None:
+    def find(self, value: int) -> bool:
+        current_node: Optional[Node] = self.root_node
+        while isinstance(current_node, Node):
             if current_node.value == value:
                 return True
             if value <= current_node.value:
@@ -41,7 +42,7 @@ class Bst(Generic[T]):
         return False
 
     def auto_balance(self) -> None:
-        # bredth first tree travesal into a list of values (time: O(n))
+        # breadth first tree traversal into a list of values (time: O(n))
         # sort using a O(nLog(n)) algorithm like merge sort
         # compute midian index of sorted list
         # create new BST with median
