@@ -11,16 +11,31 @@ class heap:
     def insert(self, value: int) -> None:
         self.store.append(value)
         value_idx = len(self.store) - 1
-        parent_idx = heap.get_parent(value_idx)
+        self.bubble_up(value_idx)
+
+    def bubble_up(self, target_idx: int) -> None:
+        parent_idx = heap.get_parent(target_idx)
         swapped = True
         while swapped & isinstance(parent_idx, int):
-            if self.store[value_idx] < self.store[parent_idx]:
+            if self.store[target_idx] < self.store[parent_idx]:
                 swapped = False
             else:
-                self.swap_positions(value_idx, parent_idx)
-                value_idx = parent_idx
-                parent_idx = self.get_parent(value_idx)
+                self.swap_positions(target_idx, parent_idx)
+                target_idx = parent_idx
+                parent_idx = self.get_parent(target_idx)
                 swapped = True
+    
+    def sink_down(self, target_idx: int) -> None:
+        swapped = True
+        while swapped:
+            largest_child_idx = self.get_largest_child_idx(target_idx)
+            if not isinstance(largest_child_idx, int): swapped = False
+            if self.store[target_idx] < largest_child_idx:
+                self.swap_positions(largest_child_idx, target_idx)
+                target_idx = largest_child_idx
+                swapped = True
+            else:
+                swapped = False
 
     def remove(self) -> int | None:
         if len(self.store) == 0:
@@ -32,19 +47,7 @@ class heap:
         removed_item = self.store[0]
         self.store[0] = last_item
         last_item_position = 0
-        swapped = True
-        while swapped:
-            largest_child_idx = self.get_largest_child_idx(last_item_position)
-            print(largest_child_idx)
-            if (
-                isinstance(largest_child_idx, int) & self.store[last_item_position]
-                < largest_child_idx
-            ):
-                self.swap_positions(largest_child_idx, last_item_position)
-                last_item_position = largest_child_idx
-                swapped = True
-            else:
-                swapped = False
+        self.sink_down(last_item_position)
         return removed_item
 
     def swap_positions(self, position_a: int, position_b: int) -> Tuple[int, int]:
