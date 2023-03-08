@@ -1,7 +1,6 @@
 from katas.heap import heap
 import pytest
 
-
 def test_heap__initialisation():
     hp = heap()
     assert hp.store == []
