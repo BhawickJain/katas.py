@@ -1,4 +1,5 @@
 from katas.heap import heap
+import pytest
 
 
 def test_heap__initialisation():
@@ -28,12 +29,14 @@ def test_heap__returns_correct_order_1():
     hp = heap()
     hp.insert(10)
     hp.insert(5)
+    assert hp.store == [10, 5]
     hp.insert(6)
     hp.insert(1)
     hp.insert(2)
     hp.insert(11)
     hp.insert(12)
     assert hp.remove() == 12
+    print(hp.store)
     assert hp.remove() == 11
     assert hp.remove() == 10
     assert hp.remove() == 6
@@ -54,6 +57,7 @@ def test_heap__insert_values_2():
     assert hp.store == [45, 30, 20, 10, 11, 6, 10]
 
 
+# @pytest.mark.skip(reason="testing lower level apis")
 def test_heap__returns_correct_order_2():
     hp = heap()
     hp.insert(6)
@@ -89,3 +93,19 @@ def test_heap__find_parent_of_0():
 
 def test_heap__find_parent_of_1():
     assert heap.get_parent(1) == 0
+
+
+def test_heap__get_largest_child_1():
+    hp = heap()
+    hp.insert(5)
+    hp.insert(6)
+    hp.insert(7)
+    assert hp.store == [7, 5, 6]
+    assert hp.get_largest_child_idx(0) == 2
+
+
+def test_heap__get_largest_child_2():
+    hp = heap()
+    hp.insert(7)
+    assert hp.store == [7]
+    assert hp.get_largest_child_idx(0) == None

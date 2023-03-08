@@ -3,7 +3,6 @@ import math
 
 T = TypeVar("T")
 
-
 class heap:
     def __init__(self):
         self.store = []
@@ -16,7 +15,10 @@ class heap:
     def bubble_up(self, target_idx: int) -> None:
         parent_idx = heap.get_parent(target_idx)
         swapped = True
-        while swapped & isinstance(parent_idx, int):
+        while swapped:
+            if parent_idx is None:
+                swapped = False
+                break
             if self.store[target_idx] < self.store[parent_idx]:
                 swapped = False
             else:
@@ -24,13 +26,15 @@ class heap:
                 target_idx = parent_idx
                 parent_idx = self.get_parent(target_idx)
                 swapped = True
-    
+
     def sink_down(self, target_idx: int) -> None:
         swapped = True
         while swapped:
             largest_child_idx = self.get_largest_child_idx(target_idx)
-            if not isinstance(largest_child_idx, int): swapped = False
-            if self.store[target_idx] < largest_child_idx:
+            print("largest_child", largest_child_idx)
+            if not isinstance(largest_child_idx, int):
+                swapped = False
+            elif self.store[target_idx] < self.store[largest_child_idx]:
                 self.swap_positions(largest_child_idx, target_idx)
                 target_idx = largest_child_idx
                 swapped = True
@@ -59,13 +63,16 @@ class heap:
     def get_largest_child_idx(self, last_item_position: int) -> int | None:
         left_child_idx = self.get_child_left(last_item_position)
         right_child_idx = self.get_child_right(last_item_position)
-        if left_child_idx > len(self.store) & right_child_idx > len(self.store):
+        max_index = len(self.store) - 1
+        print(max_index, left_child_idx, right_child_idx)
+        if left_child_idx > max_index and right_child_idx > max_index:
             return None
-        if left_child_idx > len(self.store) & right_child_idx < len(self.store):
+        elif left_child_idx > max_index:
             return right_child_idx
-        if right_child_idx > len(self.store) & left_child_idx < len(self.store):
+        elif right_child_idx > max_index:
+            print("meh", right_child_idx > max_index, left_child_idx < max_index)
             return left_child_idx
-        if self.store[left_child_idx] > self.store[right_child_idx]:
+        elif self.store[left_child_idx] > self.store[right_child_idx]:
             return left_child_idx
         else:
             return right_child_idx
