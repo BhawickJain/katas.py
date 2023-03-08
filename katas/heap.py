@@ -3,6 +3,7 @@ import math
 
 T = TypeVar("T")
 
+
 class heap:
     def __init__(self):
         self.store = []
